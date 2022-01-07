@@ -11,10 +11,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.function.Supplier;
 
+/**
+ * Core model factory from serialization
+ */
 public class CoreFactory implements Supplier<CoreModel>
 {
 	private final File file;
 
+	/**
+	 * Constructor
+	 *
+	 * @param file serialization file
+	 */
 	public CoreFactory(final File file)
 	{
 		this.file = file;
@@ -34,12 +42,23 @@ public class CoreFactory implements Supplier<CoreModel>
 		}
 	}
 
+	/**
+	 * Make core model from serialization
+	 *
+	 * @param args cmd-line arguments
+	 * @return core model
+	 */
 	static public CoreModel makeCoreModel(String[] args)
 	{
 		File file = new File(args[0]);
 		return new CoreFactory(file).get();
 	}
 
+	/**
+	 * Main
+	 *
+	 * @param args cmd-line arguments
+	 */
 	static public void main(String[] args)
 	{
 		CoreModel model = makeCoreModel(args);

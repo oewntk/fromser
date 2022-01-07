@@ -13,10 +13,18 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+/**
+ * Model factory from serialization
+ */
 public class Factory implements Supplier<Model>
 {
 	private final File file;
 
+	/**
+	 * Constructor
+	 *
+	 * @param file serialization file
+	 */
 	public Factory(final File file)
 	{
 		this.file = file;
@@ -36,12 +44,23 @@ public class Factory implements Supplier<Model>
 		}
 	}
 
+	/**
+	 * Make model from serialization
+	 *
+	 * @param args cmd-line arguments
+	 * @return model
+	 */
 	static public Model makeModel(String[] args)
 	{
 		File file = new File(args[0]);
 		return new Factory(file).get();
 	}
 
+	/**
+	 * Main
+	 *
+	 * @param args cmd-line arguments
+	 */
 	static public void main(String[] args)
 	{
 		Model model = makeModel(args);
