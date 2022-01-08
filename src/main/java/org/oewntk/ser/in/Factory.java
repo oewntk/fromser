@@ -47,7 +47,7 @@ public class Factory implements Supplier<Model>
 	/**
 	 * Make model from serialization
 	 *
-	 * @param args cmd-line arguments
+	 * @param args command-line arguments
 	 * @return model
 	 */
 	static public Model makeModel(String[] args)
@@ -59,7 +59,7 @@ public class Factory implements Supplier<Model>
 	/**
 	 * Main
 	 *
-	 * @param args cmd-line arguments
+	 * @param args command-line arguments
 	 */
 	static public void main(String[] args)
 	{
