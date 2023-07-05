@@ -10,7 +10,7 @@
 
 	<groupId>io.github.oewntk</groupId>
 	<artifactId>fromser</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<name>from_ser</name>
 	<description>Deserialize files to Wordnet model.</description>
 	<url>https://github.com/oewntk/fromser</url>
@@ -25,12 +25,12 @@
 		<dependency>
 			<groupId>io.github.oewntk</groupId>
 			<artifactId>model</artifactId>
-			<version>1.0.3</version>
+			<version>1.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.oewntk</groupId>
 			<artifactId>model</artifactId>
-			<version>1.0.3</version>
+			<version>1.0.4</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
