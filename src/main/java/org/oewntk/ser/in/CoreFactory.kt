@@ -1,67 +1,57 @@
 /*
  * Copyright (c) 2021-2021. Bernard Bou.
  */
+package org.oewntk.ser.`in`
 
-package org.oewntk.ser.in;
-
-import org.oewntk.model.CoreModel;
-import org.oewntk.model.DeSerialize;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.function.Supplier;
+import org.oewntk.model.CoreModel
+import org.oewntk.model.DeSerialize.deSerializeCoreModel
+import java.io.File
+import java.io.IOException
+import java.util.function.Supplier
 
 /**
  * Core model factory from serialization
+ *
+ * @property file serialization file
  */
-public class CoreFactory implements Supplier<CoreModel>
-{
-	private final File file;
+class CoreFactory(
+	private val file: File
+) : Supplier<CoreModel?> {
 
-	/**
-	 * Constructor
-	 *
-	 * @param file serialization file
-	 */
-	public CoreFactory(final File file)
-	{
-		this.file = file;
-	}
-
-	@Override
-	public CoreModel get()
-	{
-		try
-		{
-			return DeSerialize.deSerializeCoreModel(file);
-		}
-		catch (IOException | ClassNotFoundException e)
-		{
-			e.printStackTrace(Tracing.psErr);
-			return null;
+	override fun get(): CoreModel? {
+		try {
+			return deSerializeCoreModel(file)
+		} catch (e: IOException) {
+			e.printStackTrace(Tracing.psErr)
+			return null
+		} catch (e: ClassNotFoundException) {
+			e.printStackTrace(Tracing.psErr)
+			return null
 		}
 	}
 
-	/**
-	 * Make core model from serialization
-	 *
-	 * @param args command-line arguments
-	 * @return core model
-	 */
-	static public CoreModel makeCoreModel(String[] args)
-	{
-		File file = new File(args[0]);
-		return new CoreFactory(file).get();
-	}
+	companion object {
 
-	/**
-	 * Main
-	 *
-	 * @param args command-line arguments
-	 */
-	static public void main(String[] args)
-	{
-		CoreModel model = makeCoreModel(args);
-		Tracing.psInfo.printf("[CoreModel] %s%n%s%n%s%n", model.getSource(), model.info(), model.counts());
+		/**
+		 * Make core model from serialization
+		 *
+		 * @param args command-line arguments
+		 * @return core model
+		 */
+		private fun makeCoreModel(args: Array<String>): CoreModel? {
+			val file = File(args[0])
+			return CoreFactory(file).get()
+		}
+
+		/**
+		 * Main
+		 *
+		 * @param args command-line arguments
+		 */
+		@JvmStatic
+		fun main(args: Array<String>) {
+			val model = makeCoreModel(args)
+			Tracing.psInfo.printf("[CoreModel] %s%n%s%n%s%n", model!!.source, model.info(), model.counts())
+		}
 	}
 }
