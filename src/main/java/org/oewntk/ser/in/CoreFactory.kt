@@ -15,43 +15,43 @@ import java.util.function.Supplier
  * @property file serialization file
  */
 class CoreFactory(
-	private val file: File
+    private val file: File,
 ) : Supplier<CoreModel?> {
 
-	override fun get(): CoreModel? {
-		try {
-			return deSerializeCoreModel(file)
-		} catch (e: IOException) {
-			e.printStackTrace(Tracing.psErr)
-			return null
-		} catch (e: ClassNotFoundException) {
-			e.printStackTrace(Tracing.psErr)
-			return null
-		}
-	}
+    override fun get(): CoreModel? {
+        try {
+            return deSerializeCoreModel(file)
+        } catch (e: IOException) {
+            e.printStackTrace(Tracing.psErr)
+            return null
+        } catch (e: ClassNotFoundException) {
+            e.printStackTrace(Tracing.psErr)
+            return null
+        }
+    }
 
-	companion object {
+    companion object {
 
-		/**
-		 * Make core model from serialization
-		 *
-		 * @param args command-line arguments
-		 * @return core model
-		 */
-		private fun makeCoreModel(args: Array<String>): CoreModel? {
-			val file = File(args[0])
-			return CoreFactory(file).get()
-		}
+        /**
+         * Make core model from serialization
+         *
+         * @param args command-line arguments
+         * @return core model
+         */
+        private fun makeCoreModel(args: Array<String>): CoreModel? {
+            val file = File(args[0])
+            return CoreFactory(file).get()
+        }
 
-		/**
-		 * Main
-		 *
-		 * @param args command-line arguments
-		 */
-		@JvmStatic
-		fun main(args: Array<String>) {
-			val model = makeCoreModel(args)
-			Tracing.psInfo.printf("[CoreModel] %s%n%s%n%s%n", model!!.source, model.info(), model.counts())
-		}
-	}
+        /**
+         * Main
+         *
+         * @param args command-line arguments
+         */
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val model = makeCoreModel(args)
+            Tracing.psInfo.printf("[CoreModel] %s%n%s%n%s%n", model!!.source, model.info(), model.counts())
+        }
+    }
 }
