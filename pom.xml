@@ -145,13 +145,8 @@
         <version>2.22.2</version>
         <configuration>
           <systemPropertyVariables>
-            <property>
-              <name>SOURCE</name>
-              <value>${project.basedir}/ser</value>
-            </property>
-            <property>
-              <name>SILENT</name>
-            </property>
+            <SOURCE>${project.basedir}/ser</SOURCE>
+            <SILENT/>
           </systemPropertyVariables>
         </configuration>
       </plugin>
