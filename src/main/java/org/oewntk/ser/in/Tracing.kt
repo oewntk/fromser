@@ -9,7 +9,6 @@ import java.io.PrintStream
 object Tracing {
 	val psInfo: PrintStream = System.out
 
-	@JvmField
 	val psErr: PrintStream = System.err
 
 	val psNull: PrintStream = PrintStream(object : OutputStream(
