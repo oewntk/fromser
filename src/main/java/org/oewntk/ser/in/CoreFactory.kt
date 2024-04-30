@@ -5,6 +5,7 @@ package org.oewntk.ser.`in`
 
 import org.oewntk.model.CoreModel
 import org.oewntk.model.DeSerialize.deSerializeCoreModel
+import org.oewntk.model.ModelInfo
 import java.io.File
 import java.io.IOException
 import java.util.function.Supplier
@@ -51,7 +52,7 @@ class CoreFactory(
         @JvmStatic
         fun main(args: Array<String>) {
             val model = makeCoreModel(args)
-            Tracing.psInfo.printf("[CoreModel] %s%n%s%n%s%n", model!!.source, model.info(), model.counts())
+            Tracing.psInfo.printf("[CoreModel] %s%n%s%n%s%n", model!!.source, model.info(), ModelInfo.counts(model))
         }
     }
 }
