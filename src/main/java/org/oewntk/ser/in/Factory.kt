@@ -52,7 +52,7 @@ class Factory(
         @JvmStatic
         fun main(args: Array<String>) {
             val model = makeModel(args)
-            org.oewntk.model.Tracing.psInfo.printf("[Model] %s%n%s%n%s%n", model!!.sources.contentToString(), model.info(), ModelInfo.counts(model))
+            Tracing.psInfo.printf("[Model] %s%n%s%n%s%n", model!!.sources.contentToString(), model.info(), ModelInfo.counts(model))
         }
     }
 }
