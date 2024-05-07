@@ -18,8 +18,6 @@ object LibTestsSerCommon {
 
     var model: CoreModel? = null
 
-    var modelInfo: String? = null
-
     fun init() {
         if (model == null) {
             if (source == null) {
@@ -36,10 +34,5 @@ object LibTestsSerCommon {
             model = DeSerialize.deSerializeCoreModel(file)
         }
         checkNotNull(model)
-        val info = model!!.info()
-        val counts = ModelInfo.counts(model!!)
-        modelInfo = "$info\n$counts"
-        ps.println(modelInfo)
-        ps.println()
     }
 }
