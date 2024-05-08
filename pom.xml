@@ -51,7 +51,6 @@
     </dependency>
   </dependencies>
 
-
   <build>
     <plugins>
 
@@ -144,8 +143,10 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
+          <skipTests>false</skipTests>
           <systemPropertyVariables>
-            <SOURCE>${project.basedir}/ser</SOURCE>
+            <SOURCE>${project.basedir}/oewn.ser</SOURCE>
+            <INFO>${project.basedir}/oewn.info</INFO>
             <SILENT/>
           </systemPropertyVariables>
         </configuration>
