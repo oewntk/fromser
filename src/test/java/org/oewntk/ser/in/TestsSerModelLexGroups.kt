@@ -73,12 +73,12 @@ class TestsSerModelLexGroups {
 
     @Test
     fun testCIHypermapWest() {
-        testCIHypermap3(lexHyperMap, "west", LibTestsSerCommon.ps)
+        testCIHypermap3(lexHyperMap, "west", ps)
     }
 
     @Test
     fun testCIHypermapBaroque() {
-        testCIHypermap3(lexHyperMap, "baroque", LibTestsSerCommon.ps)
+        testCIHypermap3(lexHyperMap, "baroque", ps)
     }
 
     companion object {
