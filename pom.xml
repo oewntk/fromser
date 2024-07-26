@@ -146,7 +146,7 @@
           <skipTests>false</skipTests>
           <systemPropertyVariables>
             <SOURCE>${project.basedir}/oewn.ser</SOURCE>
-            <INFO>${project.basedir}/oewn.info</INFO>
+            <INFO>${project.basedir}/oewn.ser.info</INFO>
             <SILENT/>
           </systemPropertyVariables>
         </configuration>
