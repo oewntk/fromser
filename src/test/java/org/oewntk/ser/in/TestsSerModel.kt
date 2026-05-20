@@ -30,10 +30,10 @@ class TestsSerModel {
             val orig: String = System.getProperty("INFO")!!
             origInfo = File(orig).readText()
 
-            LibTestsSerCommon.init()
-            checkNotNull(model)
-            val info = model!!.info()
-            val counts = ModelInfo.counts(model!!)
+            model // eager trigger in @BeforeClass
+
+            val info = model.info()
+            val counts = ModelInfo.counts(model)
             modelInfo = "$info\n$counts"
             ps.println(modelInfo)
             ps.println()
