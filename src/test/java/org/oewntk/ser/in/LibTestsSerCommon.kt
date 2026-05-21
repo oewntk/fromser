@@ -3,7 +3,6 @@
  */
 package org.oewntk.ser.`in`
 
-import org.junit.Assert
 import org.oewntk.model.CoreModel
 import org.oewntk.model.DeSerialize
 import java.io.File
