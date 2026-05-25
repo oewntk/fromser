@@ -23,24 +23,31 @@ import org.oewntk.ser.`in`.LibTestsSerCommon.ps
 
 class TestsSerModelKeys {
 
+    val properNouns = false
+    val inc = if (properNouns) 1L else 0L
+
+    // The expected results of is tests depends on the inclusion of proper nouns.
+    // (Mobile, the town, is then included)
     @Test
     fun testMobile() {
         val r = testMobile(model, ps)
-        assertEquals(1, r[0].toLong())
-        assertEquals(1, r[1].toLong())
+        assertEquals(0 + inc , r[0].toLong())
+        assertEquals(0 + inc, r[1].toLong())
         assertEquals(1, r[2].toLong())
-        assertEquals(2, r[3].toLong())
-        assertEquals(2, r[4].toLong())
+        assertEquals(1 + inc, r[3].toLong())
+        assertEquals(1 + inc, r[4].toLong())
         assertEquals(5, r.size.toLong())
     }
 
+   // The expected results of is tests depends on the inclusion of proper nouns.
+    // (Mobile, the town, is then included)
     @Test
     fun testMobileNoPronunciation() {
         val r = testMobileNoPronunciation(model, ps)
-        assertEquals(1, r[0].toLong())
+        assertEquals(0 + inc, r[0].toLong())
         assertEquals(1, r[1].toLong())
-        assertEquals(2, r[2].toLong())
-        assertEquals(2, r[3].toLong())
+        assertEquals(1 + inc, r[2].toLong())
+        assertEquals(1 + inc, r[3].toLong())
         assertEquals(4, r.size.toLong())
     }
 
