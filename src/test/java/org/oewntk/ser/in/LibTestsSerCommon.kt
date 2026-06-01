@@ -5,14 +5,29 @@ package org.oewntk.ser.`in`
 
 import org.oewntk.model.CoreModel
 import org.oewntk.model.DeSerialize
+import org.oewntk.model.ModelInfo
 import java.io.File
 import java.io.PrintStream
+import kotlin.test.assertEquals
 
 object LibTestsSerCommon {
 
     private val source: String? = System.getProperty("SOURCE")
 
-    val ps: PrintStream = if (!System.getProperties().containsKey("SILENT")) Tracing.psInfo else Tracing.psNull
+    fun checkOrig() {
+        val orig: String = System.getProperty("INFO")!!
+        val origInfo = File(orig).readText()
+        val info = model.info()
+        val counts = ModelInfo.counts(model)
+        val modelInfo = "$info\n$counts"
+        ps.println(modelInfo)
+        assertEquals(origInfo, modelInfo)
+    }
+
+    val ps: PrintStream =
+        if (System.getProperties().containsKey("VERBOSE")) Tracing.psInfo
+        else if (System.getProperties().containsKey("SILENT")) Tracing.psNull
+        else Tracing.psNull
 
     val model: CoreModel by lazy {
         if (source == null) {
