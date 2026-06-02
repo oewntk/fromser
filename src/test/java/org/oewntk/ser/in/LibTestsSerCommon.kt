@@ -24,10 +24,11 @@ object LibTestsSerCommon {
         assertEquals(origInfo, modelInfo)
     }
 
-    val ps: PrintStream =
-        if (System.getProperties().containsKey("VERBOSE")) Tracing.psInfo
-        else if (System.getProperties().containsKey("SILENT")) Tracing.psNull
-        else Tracing.psNull
+    val silent = if (System.getProperties().containsKey("VERBOSE")) false
+    else if (System.getProperties().containsKey("SILENT")) true
+    else true
+
+    val ps: PrintStream = if (!silent) Tracing.psInfo else Tracing.psNull
 
     val model: CoreModel by lazy {
         if (source == null) {
