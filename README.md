@@ -19,4 +19,4 @@ Project [fromser](https://github.com/oewntk/fromser)
 
 		<groupId>io.github.oewntk</groupId>
 		<artifactId>fromser</artifactId>
-		<version>2.4.0</version>
+		<version>3.0.1</version>
