@@ -13,7 +13,6 @@ import org.oewntk.model.LibTestModel.testScanLexesForTestWords
 import org.oewntk.model.LibTestModel.testWord
 import org.oewntk.model.LibTestModel.testWords
 import org.oewntk.model.PartOfSpeech
-import org.oewntk.model.SynsetType
 import org.oewntk.ser.`in`.LibTestsSerCommon.model
 import org.oewntk.ser.`in`.LibTestsSerCommon.ps
 
@@ -21,12 +20,12 @@ class TestsSerModelWords {
 
     @Test
     fun testScanLexesForTestWords() {
-        testScanLexesForTestWords(model, { lex: Lex -> Key.KeyLCP.of_t(lex) }, { seq: Sequence<Key> -> makeIndexMap(seq) }, testWords, PRINT_TEST_WORDS, ps)
+        testScanLexesForTestWords(model, { lex: Lex -> Key.FromLemmaCategoryPronunciation.of_t(lex) }, { seq: Sequence<Key> -> makeIndexMap(seq) }, testWords, PRINT_TEST_WORDS, ps)
     }
 
     @Test
     fun testScanLexesForTestWordsSorted() {
-        testScanLexesForTestWords(model, { lex: Lex -> Key.KeyLCP.of_t(lex) }, { seq: Sequence<Key> -> makeSortedIndexMap(seq) }, testWords, PRINT_TEST_WORDS, ps)
+        testScanLexesForTestWords(model, { lex: Lex -> Key.FromLemmaCategoryPronunciation.of_t(lex) }, { seq: Sequence<Key> -> makeSortedIndexMap(seq) }, testWords, PRINT_TEST_WORDS, ps)
     }
 
     @Test
