@@ -13,6 +13,13 @@ import kotlin.test.assertEquals
 object LibTestsSerCommon {
 
     private val source: String? = System.getProperty("SOURCE")
+    private val sourceB: String? = System.getProperty("SOURCEB")
+
+    val silent = if (System.getProperties().containsKey("VERBOSE")) false
+    else if (System.getProperties().containsKey("SILENT")) true
+    else true
+
+    val ps: PrintStream = if (!silent) Tracing.psInfo else Tracing.psNull
 
     fun checkOrig() {
         val orig: String = System.getProperty("INFO")!!
@@ -24,23 +31,29 @@ object LibTestsSerCommon {
         assertEquals(origInfo, modelInfo)
     }
 
-    val silent = if (System.getProperties().containsKey("VERBOSE")) false
-    else if (System.getProperties().containsKey("SILENT")) true
-    else true
-
-    val ps: PrintStream = if (!silent) Tracing.psInfo else Tracing.psNull
-
-    val model: CoreModel by lazy {
-        if (source == null) {
-            Tracing.psErr.println("Define serialized source file dir with -DSOURCE=path")
-            throw AssertionError("SOURCE not defined")
-        }
+    private fun getModel(source: String): CoreModel {
         val file = File(source)
         Tracing.psInfo.printf("source=%s%n", file.absolutePath)
         if (!file.exists()) {
             Tracing.psErr.println("Define serialized source dir that exists")
             throw AssertionError("SOURCE dir does not exist: ${file.absolutePath}")
         }
-        DeSerialize.deSerializeCoreModel(file)
+        return DeSerialize.deSerializeCoreModel(file)
+    }
+
+    val model: CoreModel by lazy {
+        if (source == null) {
+            Tracing.psErr.println("Define serialized source file dir with -DSOURCE=path")
+            throw AssertionError("SOURCE not defined")
+        }
+        getModel(source)
+    }
+
+    val modelB: CoreModel by lazy {
+        if (sourceB == null) {
+            Tracing.psErr.println("Define serialized source file dir with -DSOURCEB=path")
+            throw AssertionError("SOURCEB not defined")
+        }
+        getModel(sourceB)
     }
 }
