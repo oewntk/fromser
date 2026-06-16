@@ -17,7 +17,6 @@ import java.util.function.Supplier
  */
 class Factory(
     private val file: File,
-    private val verbose: Boolean = false,
 ) : Supplier<Model?> {
 
     override fun get(): Model? {
@@ -48,7 +47,7 @@ class Factory(
                 iArg++
             }
             val file = File(args[iArg])
-            return Factory(file, verbose = verbose).get()
+            return Factory(file).get()
         }
 
         /**

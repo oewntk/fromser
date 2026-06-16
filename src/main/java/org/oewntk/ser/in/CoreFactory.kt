@@ -17,7 +17,6 @@ import java.util.function.Supplier
  */
 class CoreFactory(
     private val file: File,
-    private val verbose: Boolean = false
 ) : Supplier<CoreModel?> {
 
     override fun get(): CoreModel? {
