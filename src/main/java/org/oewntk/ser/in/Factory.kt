@@ -40,12 +40,7 @@ class Factory(
          * @return model
          */
         private fun makeModel(args: Array<String>): Model? {
-            var iArg = 0
-            var verbose = false
-            if (args[iArg] == "--verbose") {
-                verbose = true
-                iArg++
-            }
+            val iArg = 0
             val file = File(args[iArg])
             return Factory(file).get()
         }
